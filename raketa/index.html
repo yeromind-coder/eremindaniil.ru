@@ -1,0 +1,291 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ракетная технология WB</title>
+<meta name="description" content="Методология продвижения карточки на Wildberries: 4 этапа, 9 шагов подготовки, метрики и дерево диагностики. Даниил Еремин, @yeromind.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&family=Geist:wght@400;500;600;700&family=Lora:ital@0;1&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --forest:#122314;--moss:#273f2b;--sage:#7e8371;--fern:#b7bda5;--sprout:#68ef3f;--verdant:#26a200;
+  --wash:#e7f9dd;--mist:#d9deca;--onyx:#30322a;--white:#ffffff;--bone:#f2f5eb;
+  --display:Unbounded,Georgia,serif;--sans:Geist,system-ui,-apple-system,"Segoe UI",sans-serif;--serif:Lora,Georgia,serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--forest);color:var(--white);font-family:var(--sans);font-size:16px;line-height:1.5;letter-spacing:-0.2px}
+.band{padding-block:96px;padding-inline:16px}
+.band[data-theme="dark"]{--canvas:var(--forest);--ink:var(--white);--body:var(--fern);--card:var(--forest);--line:var(--onyx);--acc:var(--sprout);background:var(--canvas);color:var(--ink)}
+.band[data-theme="light"]{--canvas:var(--white);--ink:var(--onyx);--body:var(--onyx);--card:var(--bone);--line:var(--mist);--acc:var(--verdant);background:var(--canvas);color:var(--ink);color-scheme:light}
+.wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;padding:16px 16px 0}
+.nav-in{max-width:1200px;margin:0 auto;background:#30322ae6;border-radius:28px;box-shadow:0 8px 32px rgba(0,0,0,.25);padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.mark{font-weight:700;font-size:18px;color:var(--white)}
+.nav a.mark{color:var(--white)}
+.nav a.mark:hover{color:var(--sprout)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;font-size:14px;font-weight:500;border-radius:28px;padding:12px 22px;text-decoration:none;border:1px solid transparent}
+.btn.p{background:var(--sprout);color:var(--onyx)}
+.btn.g{border-color:var(--white);color:var(--white)}
+.nav a{color:var(--fern);text-decoration:none;font-size:14px;font-weight:500}
+.nav a:hover{color:var(--sprout)}
+.links{display:flex;gap:20px;flex-wrap:wrap}
+h1,h2{font-family:var(--display);font-weight:700;margin:0;text-wrap:balance}
+h1{font-size:clamp(40px,8vw,80px);line-height:.95;letter-spacing:-.8px}
+h2{font-size:clamp(30px,5vw,56px);line-height:.92;letter-spacing:-.7px}
+h3{font-size:24px;line-height:1.33;font-weight:600;margin:0;letter-spacing:-.36px}
+h4{font-size:18px;font-weight:600;margin:0}
+p{margin:0}
+.acc{color:var(--acc)}
+.lede{font-size:18px;line-height:1.55;color:var(--body);max-width:680px}
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:var(--acc)}
+.head{display:flex;flex-direction:column;gap:20px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border:1px solid var(--sage);border-radius:28px;padding:8px 16px;font-size:14px;font-weight:500;color:var(--body)}
+.pill.on{background:var(--sprout);border-color:var(--sprout);color:var(--onyx)}
+.badge{display:inline-block;background:var(--wash);color:var(--moss);border-radius:20px;padding:4px 12px;font-family:var(--serif);font-size:15px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.card p,.card li{color:var(--body)}
+.band[data-theme="light"] .card{border-color:transparent}
+.num{font-family:var(--display);font-size:40px;line-height:1;color:var(--acc)}
+ul,ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.hero{padding-top:120px;position:relative;overflow:hidden}
+.orb{position:absolute;right:-180px;top:-120px;width:620px;height:620px;border-radius:9999px;background:radial-gradient(circle at 35% 35%,#273f2b,#000 70%);opacity:.4;pointer-events:none}
+.hero .wrap{position:relative}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.stage{padding:28px;display:flex;flex-direction:column;gap:12px;border-right:1px solid var(--line)}
+.stage:last-child{border-right:0}
+.stage .k{font-size:13px;color:var(--sage);font-weight:500;letter-spacing:1px;text-transform:uppercase}
+.stage p{color:var(--body)}
+.steps{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:64px 1fr 1.2fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:start}
+.step .n{font-family:var(--display);font-size:24px;color:var(--acc)}
+.step p{color:var(--body)}
+.step .out{font-size:14px;color:var(--body)}
+.step .out b{font-weight:600;color:var(--ink)}
+@media (max-width:760px){.step{grid-template-columns:44px 1fr}.step .out{grid-column:2}.stage{border-right:0;border-bottom:1px solid var(--line)}}
+.formula{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:12px 14px;color:var(--ink);overflow-x:auto}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--acc)}
+tr:last-child td{border-bottom:0}
+.tree{display:flex;flex-direction:column;gap:10px}
+.node{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+.node .lvl{flex:0 0 auto;background:var(--sprout);color:var(--onyx);font-weight:600;font-size:13px;border-radius:28px;padding:4px 12px}
+.node p{color:var(--body)}
+.quote{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;max-width:760px;color:var(--ink)}
+.foot{font-size:14px;color:var(--fern)}
+.warn{border-left:3px solid var(--sprout);padding-left:20px}
+/* hero chart */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.chart{border:1px solid var(--onyx);border-radius:24px;padding:24px;background:rgba(18,35,20,.6);display:flex;flex-direction:column;gap:12px}
+.chart svg{width:100%;height:auto;display:block}
+.chart .cap{font-size:13px;color:var(--sage)}
+.draw{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.4s .3s cubic-bezier(.6,.1,.2,1) forwards}
+.draw2{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.4s .9s cubic-bezier(.6,.1,.2,1) forwards}
+.draw3{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.6s 1.2s cubic-bezier(.6,.1,.2,1) forwards}
+.draw4{clip-path:inset(0 100% 0 0);animation:wipe 2.6s 1.5s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes wipe{to{clip-path:inset(0 0 0 0)}}
+.lbl{opacity:0;animation:fade .6s 3.2s forwards}
+@keyframes fade{to{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.rocket{offset-path:path("M20 190 C 90 188, 130 60, 200 40 S 420 70, 580 72");offset-rotate:auto;animation:fly 2.6s .5s cubic-bezier(.6,.1,.2,1) forwards;offset-distance:0%}
+@keyframes fly{to{offset-distance:100%}}
+.hero h1 .w{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 .w:nth-child(2){animation-delay:.15s}
+@keyframes rise{from{transform:translateY(24px)}to{transform:none}}
+.pill{transition:background .25s,color .25s,border-color .25s}
+.pill:hover{border-color:var(--sprout);color:var(--white)}
+/* reveal: visible at rest, gentle lift */
+.rv{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.pre{transform:translateY(28px)}
+.card,.node,.stage{transition:border-color .25s,transform .25s}
+.band[data-theme="dark"] .card:hover,.node:hover,.stage:hover{border-color:var(--sprout)}
+.band[data-theme="light"] .card:hover{transform:translateY(-3px)}
+.step .n{transition:transform .3s}
+.step:hover .n{transform:translateX(6px)}
+.ladder{display:flex;align-items:flex-end;gap:8px;height:120px;padding-top:8px}
+.ladder span{flex:1;background:var(--sprout);border-radius:8px 8px 0 0;transform-origin:bottom;animation:grow .8s cubic-bezier(.2,.7,.2,1) both;display:flex;justify-content:center;align-items:flex-start;font-size:12px;font-weight:600;color:var(--onyx);padding-top:4px}
+.ladder span.sup{background:var(--moss);color:var(--fern)}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.lab{display:flex;gap:8px;font-size:12px;color:var(--sage)}
+.lab span{flex:1;text-align:center}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.draw,.draw2,.draw3{stroke-dashoffset:0}.draw4{clip-path:none}.lbl{opacity:1}.rocket{offset-distance:100%}.js .rv.pre{transform:none}}
+</style>
+</head><body>
+
+<nav class="nav"><div class="nav-in"><a class="mark back" href="../">← @yeromind</a><div class="links"><a href="#model">Модель</a><a href="#stages">Этапы</a><a href="#prep">Подготовка</a><a href="#flight">Запуск</a><a href="#diag">Диагностика</a><a href="#case">Кейс</a></div></div></nav>
+
+<section class="band hero" data-theme="dark"><div class="orb"></div><div class="wrap"><div class="hero-grid">
+  <div class="head">
+    <span class="eyebrow">Методология продвижения карточки · Wildberries</span>
+    <h1><span class="w">Ракетная</span> <span class="w acc">технология</span></h1>
+    <p class="lede">Алгоритм, который связывает в одну последовательность отдельные инструменты продвижения: воронку, SEO и близости, выбор кластеров, рекламу, маркетинговые раздачи и контроль мест. Цель — вывести артикул в топ по целевым запросам и удержать его там с падающим ДРР.</p>
+    <div class="pills"><span class="pill on">4 этапа</span><span class="pill">9 шагов подготовки</span><span class="pill">2 правила роста</span><span class="pill">Дерево диагностики</span></div>
+  </div>
+  <div class="chart" aria-label="Схема: на старте ДРР растёт, выручка и маржа низкие; затем позиция, выручка и маржинальность растут, а ДРР снижается">
+    <svg viewBox="0 0 600 240" role="img">
+      <g stroke="#30322a" stroke-width="1"><line x1="20" y1="200" x2="580" y2="200"/><line x1="160" y1="20" x2="160" y2="200" stroke-dasharray="3 5"/><line x1="300" y1="20" x2="300" y2="200" stroke-dasharray="3 5"/><line x1="440" y1="20" x2="440" y2="200" stroke-dasharray="3 5"/></g>
+      <g fill="#7e8371" font-family="Geist, sans-serif" font-size="13"><text x="90" y="226" text-anchor="middle">Подготовка</text><text x="230" y="226" text-anchor="middle">Старт</text><text x="370" y="226" text-anchor="middle">Полёт</text><text x="510" y="226" text-anchor="middle">Орбита</text></g>
+      <path class="draw2" d="M20 196 C 120 196, 170 40, 220 42 S 330 150, 580 176" fill="none" stroke="#7e8371" stroke-width="2"/>
+      <path class="draw3" d="M20 197 C 150 196, 230 150, 320 118 S 500 98, 580 94" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="draw4" d="M20 193 C 140 195, 200 206, 280 178 S 480 136, 580 130" fill="none" stroke="#b7bda5" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 6"/>
+      <path class="draw" d="M20 190 C 90 188, 130 60, 200 40 S 420 60, 580 60" fill="none" stroke="#68ef3f" stroke-width="3" stroke-linecap="round"/>
+      <g class="rocket"><circle r="7" fill="#68ef3f"/><circle r="14" fill="#68ef3f" opacity=".2"/></g>
+      <g font-family="Geist, sans-serif" font-size="13" font-weight="500" class="lbl"><text x="580" y="48" text-anchor="end" fill="#68ef3f">позиция в выдаче</text><text x="580" y="84" text-anchor="end" fill="#ffffff">выручка</text><text x="580" y="120" text-anchor="end" fill="#b7bda5">маржинальность</text><text x="580" y="168" text-anchor="end" fill="#7e8371">ДРР</text></g>
+    </svg>
+    <p class="cap">На старте ДРР на пике, выручка низкая, маржа проседает — это вложение в разгон. Дальше позиция закрепляется, выручка растёт, ДРР падает, и маржинальность выходит выше исходной.</p>
+  </div>
+</div></div></section>
+
+<section class="band" id="model" data-theme="light"><div class="wrap">
+  <div class="head"><span class="eyebrow">Основа</span><h2>Модель идеального <span class="acc">продвижения</span></h2>
+  <p class="lede">Если бы бюджет был бесконечным, продвижение выглядело бы так: собрать все ключи ниши, выставить максимальную ставку, получить события, оставить конверсионные кластеры, отрезать лишние и ждать, пока органика поднимется, а ставка сможет снизиться. Ракетная технология повторяет эту модель на реальном бюджете: трафик покупается точечно, только по нужным кластерам.</p></div>
+  <div class="grid g3">
+    <div class="card"><span class="num">1</span><h3>Воронка и полезность</h3><p>Сколько маркетплейс зарабатывает на одном показе артикула. Чем выше полезность, тем охотнее алгоритм даёт трафик.</p></div>
+    <div class="card"><span class="num">2</span><h3>Управление трафиком</h3><p>Движение по кластерам: сначала НЧ и СЧ, высокочастотные запросы минусуются до тех пор, пока не заложен фундамент конверсий.</p></div>
+    <div class="card"><span class="num">3</span><h3>Маркетинговые раздачи</h3><p>Товар с кэшбэком для реальных покупателей по целевым ключам, чтобы воронка на старте выглядела как у сильной карточки.</p></div>
+  </div>
+  <div class="grid g2">
+    <div class="card"><span class="badge">правило</span><h3>Постоянный рост конверсий</h3><p>Относительные показатели (CTR, конверсия в корзину и заказ) должны расти от периода к периоду. Сама по себе ставка CPM не является фактором ранжирования.</p></div>
+    <div class="card"><span class="badge">правило</span><h3>Постоянный рост заказов</h3><p>Абсолютное число заказов растёт день ко дню. Пока растут оба показателя, продвижение идёт правильно, даже если ДРР временно высокий.</p></div>
+  </div>
+  <div class="card"><h3>«Яма» при включении рекламы</h3><p>Реклама по всем частотам сразу усредняет конверсии: плавающий CTR может упасть, например, с 8% до 2%, и алгоритм сочтёт карточку неготовой. Яму закрывают заранее одним или несколькими способами:</p>
+    <div class="grid g4">
+      <div><h4>Цена</h4><p>Временно сделать цену привлекательнее, чтобы конверсия была высокой по любому ключу.</p></div>
+      <div><h4>Кластеры</h4><p>Сразу минусовать ВЧ и оставлять запросы из 3–4 и более слов.</p></div>
+      <div><h4>Внешний трафик</h4><p>Заказы с внешки повышают конверсию относительно поисковых показов.</p></div>
+      <div><h4>Маркетинговые раздачи</h4><p>Заказы от покупателей по целевым ключам выравнивают воронку.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="stages" data-theme="dark"><div class="wrap">
+  <div class="head"><span class="eyebrow">Структура</span><h2>Четыре этапа <span class="acc">полёта</span></h2>
+  <p class="lede">ДРР ведёт себя как расход топлива ракеты: пик на старте, затем снижение. Площадь под кривой ДРР — это цена, которую карточка платит за выход из «притяжения» дальних позиций.</p></div>
+  <div class="stages">
+    <div class="stage"><span class="k">Этап 1</span><h3>Подготовка к старту</h3><p>Товар, воронка, остатки, юнит-экономика, кластеры, план раздач. Ошибка здесь означает старт не по тем кластерам и потерю денег.</p></div>
+    <div class="stage"><span class="k">Этап 2</span><h3>Старт</h3><p>Поставка на склады, раздачи по НЧ, затем по СЧ, затем реклама с минусацией ВЧ.</p></div>
+    <div class="stage"><span class="k">Этап 3</span><h3>Полёт</h3><p>Высокий ДРР допустим. Оптимизация рекламы, контроль мест, выход на расчётные показатели за 10–14 дней.</p></div>
+    <div class="stage"><span class="k">Этап 4</span><h3>Орбита</h3><p>Поддерживающие раздачи, снижение ставки «по приборам», поиск места и цены, переход к следующему кластеру.</p></div>
+  </div>
+  <p class="quote">Если не подготовиться, можно стартовать не туда. Если не рассчитать поддержку, можно не долететь. Если отключить всё в топе, можно долететь и не остаться.</p>
+</div></section>
+
+<section class="band" id="prep" data-theme="light"><div class="wrap">
+  <div class="head"><span class="eyebrow">Этап 1</span><h2>Подготовка к <span class="acc">старту</span></h2><p class="lede">Девять шагов до первого рубля на рекламу. Каждый шаг заканчивается конкретным результатом, который можно проверить.</p></div>
+  <div class="steps">
+    <div class="step"><span class="n">01</span><div><h4>Ниша и товар</h4><p>Объём ниши, тренд, сезонность, процент выкупа, ДРР ниши. Ни один конкурент не держит больше 20% продаж.</p></div><p class="out"><b>Проверка монополизации трафика:</b> какая доля частотности приходится на топ-1 и топ-20 ключей. Чем она ниже, тем проще войти. Коэффициенты потенциала роста делим на 2 как запас: x4 → x2 рабочий, x1,5 → отказ.</p></div>
+    <div class="step"><span class="n">02</span><div><h4>Воронка артикула</h4><p>Выбрать артикул по выручке и марже на миллион показов, полезности и минимальному CPM. Докрутить контент, фото и цену.</p></div><p class="out"><b>Ориентир полезности:</b> около 350 ₽ на тысячу показов; если ниже, сравнить с прямым конкурентом. <b>Инструменты:</b> близость фото и текста к запросу, тематический скор.</p></div>
+    <div class="step"><span class="n">03</span><div><h4>Остатки</h4><p>Нет остатков — нет продвижения. Расчёт закупки по тренду ниши с учётом процента выкупа, чтобы к концу сезона остаток обнулился.</p></div><p class="out"><b>Фундамент:</b> несколько фулфилментов и поставщиков, деньги на закупку, логистика. Один поставщик или один фулфилмент — единая точка отказа.</p></div>
+    <div class="step"><span class="n">04</span><div><h4>Юнит-экономика товара</h4><p>Стресс-тест: рост комиссии и логистики, реклама +5–10%, падение цены и выкупа.</p></div><p class="out"><b>Результат:</b> понимание, выдерживает ли товар ухудшение условий площадки.</p></div>
+    <div class="step"><span class="n">05</span><div><h4>Юнит-экономика рекламы</h4><p>Предельные ставки при нулевой марже и при плановом ДРР.</p></div><p class="out"><b>Четыре числа:</b> CPM и CPC при марже 0, CPM и CPC при целевом ДРР.</p></div>
+    <div class="step"><span class="n">06</span><div><h4>Выбор кластеров</h4><p>Только приоритет 1: высокое пересечение с семантическим ядром, нет «залетевших» нерелевантных запросов. Учитывать ценовую, модельную и цветовую сегментацию.</p></div><p class="out"><b>Результат:</b> список кластеров с прогнозом заказов в месяц, бюджетом в день и ДРР по каждому.</p></div>
+    <div class="step"><span class="n">07</span><div><h4>Моделирование воронки</h4><p>Сравнить свою воронку с топом по каждому ключу и рассчитать, сколько заказов нужно добавить, чтобы соответствовать ожиданиям алгоритма.</p></div><p class="out"><b>«Лесенка» раздач:</b> +1 заказ в день по ключу, затем 2, 2, 3… Объём не падает никогда.</p></div>
+    <div class="step"><span class="n">08</span><div><h4>Маркетинговые раздачи</h4><p>Ответственный менеджер, площадки для размещения, экономика одной раздачи с учётом кэшбэка, СПП и работы менеджера. Покупатель находит товар через поиск по ключу, а не по прямой ссылке.</p></div><p class="out"><b>Статусы в таблице:</b> «раздаём», «поддержка» (1–2 в день), «стоп». Для КГТ и дорогих товаров раздачи экономически невыгодны.</p></div>
+    <div class="step"><span class="n">09</span><div><h4>Баллы за отзывы</h4><p>Включить перед стартом, чтобы временно поднять конверсию.</p></div><p class="out"><b>Результат:</b> карточка готова к запуску.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="flight" data-theme="dark"><div class="wrap">
+  <div class="head"><span class="eyebrow">Этапы 2–4</span><h2>Старт, полёт, <span class="acc">орбита</span></h2></div>
+  <div class="grid g3">
+    <div class="card"><span class="badge">старт</span><h3>Первые 3–5 дней</h3><ol>
+      <li>Поставка на склады (или несколько фулфилментов). В первые дни WB тестирует карточку на верхних позициях и смотрит на конверсию.</li>
+      <li>Маркетинговые раздачи по одному НЧ-кластеру: минимум 5 дней, потому что переиндексация ключа занимает до 7 дней. Объём корректируется раз в 4–5 дней.</li>
+      <li>Маркетинговые раздачи по СЧ, и только после этого реклама: ручная кампания, ставка не ниже допустимой, поднимается постепенно, ВЧ сразу в минус.</li>
+      <li>Объём раздач соответствует позиции: на сотом месте реально 2–3 заказа в день, а не 10.</li>
+    </ol></div>
+    <div class="card"><span class="badge">полёт</span><h3>Дни 5–14</h3><ul>
+      <li>Минусуем лишние кластеры и ВЧ, корректируем SEO.</li>
+      <li>Ведём таблицу оцифровки продвижения: что сделали, что изменилось.</li>
+      <li>Органические заказы появляются на 3–4 день, их доля растёт; растёт число рекомендательных полок.</li>
+      <li>Высокий ДРР на этом этапе нормален. Важен финальный ДРР за весь цикл, и он должен снижаться.</li>
+      <li>Ставку не трогаем: места в рекламе растут при той же ставке.</li>
+    </ul></div>
+    <div class="card"><span class="badge">орбита</span><h3>Удержание</h3><ul>
+      <li>Поддерживающие раздачи 1–2 в день на кластер около недели.</li>
+      <li>Контроль: CTR вырос, CPC и ДРР упали, потенциалы роста сократились.</li>
+      <li>Снижаем ставку шагами по 10–20 ₽ и смотрим на показатели.</li>
+      <li>Ищем место: ставка ±20–50 ₽ и сравнение CTR по срезам времени.</li>
+      <li>Тестируем цену в топе, затем переходим к следующему кластеру.</li>
+      <li>Когда аудитория сформирована, подключаем рекламу в полках и постоянное A/B-тестирование фото.</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section class="band" data-theme="light"><div class="wrap">
+  <div class="head"><span class="eyebrow">Метрики</span><h2>Что <span class="acc">считать</span></h2><p class="lede">Пять показателей, которые показывают, идёт ли продвижение по модели. Их удобно вывести в свою аналитическую таблицу как пользовательские строки.</p></div>
+  <div class="grid g3">
+    <div class="card"><h4>Полезность для площадки</h4><div class="formula">заказы ÷ показы × цена с СПП</div><p>Выручка на один показ. Растёт — алгоритм охотнее рекомендует карточку.</p></div>
+    <div class="card"><h4>Показов на заказ</h4><div class="formula">показы ÷ заказы</div><p>Должно падать. В разобранном примере показатель снизился с 1600 до 300–400.</p></div>
+    <div class="card"><h4>Доля органики</h4><div class="formula">(все заказы − раздачи) ÷ все заказы × 100%</div><p>Должна расти, иначе отключение раздач обрушит позиции.</p></div>
+    <div class="card"><h4>Финальный ДРР</h4><div class="formula">Σ расходов ÷ Σ заказов за весь цикл</div><p>Дневной ДРР может скакать, финальный обязан снижаться.</p></div>
+    <div class="card"><h4>Плавающие CTR и CR (14 дней)</h4><div class="formula">скользящее окно 14 дней</div><p>Падение CR при росте показов — сигнал, что пошёл нецелевой трафик.</p></div>
+    <div class="card"><h4>Отбор ключей</h4><div class="formula">4+ слова · конверсия выше среднего</div><p>Размазанные запросы (стиль, «просто джинсы») убираем на старте.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="diag" data-theme="dark"><div class="wrap">
+  <div class="head"><span class="eyebrow">Системная работа</span><h2>От общего к <span class="acc">частному</span></h2><p class="lede">Когда план продаж до конца сезона не выполняется, проблему ищут сверху вниз и чинят на самом нижнем уровне. Если уровень в порядке, переходят к соседнему, а не копают глубже.</p></div>
+  <div class="tree">
+    <div class="node"><span class="lvl">Кабинет</span><p>Экономика устраивает — идём заниматься другим. Нет — ищем склейку, которая тянет вниз.</p></div>
+    <div class="node"><span class="lvl">Склейка</span><p>Находим артикул с неудовлетворительной экономикой.</p></div>
+    <div class="node"><span class="lvl">Артикул</span><p>Проверяем точки входа трафика: поиск, каталог, рекомендательные полки, главная. Коэффициент трафика больше 2 означает, что потенциал есть.</p></div>
+    <div class="node"><span class="lvl">Кластер</span><p>CTR меньше 1% — кластер не наш, исключаем. CTR больше 1%, но вне границы трафика — дотягиваем ставкой или раздачами. В границе, но ДРР не в экономике — играем местом, ценой или тестом фото.</p></div>
+    <div class="node"><span class="lvl">Воронка</span><p>Когда поиск и полки оптимизированы: CTR (фото, место, цена), корзина, заказ, выкуп. Работаем циклом «оцифровать → изменить → сравнить до и после». Затем внешний трафик.</p></div>
+  </div>
+</div></section>
+
+<section class="band" id="case" data-theme="light"><div class="wrap">
+  <div class="head"><span class="eyebrow">Кейс применения</span><h2>Женские джинсы за <span class="acc">14 дней</span></h2><p class="lede">Как методология раскладывается в рабочий план для нового артикула: широкие женские джинсы с высокой посадкой. Цифры условные: это шаблон для заполнения, а не отчёт о результатах.</p></div>
+  <div class="grid g3">
+    <div class="card"><span class="badge">НЧ · старт</span><h4>джинсы женские широкие с высокой посадкой черные</h4><p>5 слов, высокая конверсия, мало конкурентов. Здесь закладывается фундамент.</p></div>
+    <div class="card"><span class="badge">СЧ · дни 4–8</span><h4>джинсы женские широкие черные</h4><p>Подключаем после первых результатов по НЧ вместе с ручной рекламой.</p></div>
+    <div class="card"><span class="badge">ВЧ · в минус</span><h4>джинсы женские · джинсы · джинсы y2k</h4><p>Размазанный спрос и низкая конверсия. Возвращаемся к ним только после выхода на орбиту.</p></div>
+  </div>
+  <div class="card"><h4>Лесенка маркетинговых раздач по НЧ-кластеру</h4>
+    <div class="ladder" aria-label="Раздачи по дням: 1, 2, 2, 3, 3, 4, 4, затем поддержка 2, 1, 1">
+      <span style="height:25%;animation-delay:.05s">1</span><span style="height:45%;animation-delay:.1s">2</span><span style="height:45%;animation-delay:.15s">2</span><span style="height:65%;animation-delay:.2s">3</span><span style="height:65%;animation-delay:.25s">3</span><span style="height:85%;animation-delay:.3s">4</span><span style="height:85%;animation-delay:.35s">4</span><span class="sup" style="height:45%;animation-delay:.4s">2</span><span class="sup" style="height:25%;animation-delay:.45s">1</span><span class="sup" style="height:25%;animation-delay:.5s">1</span>
+    </div>
+    <div class="lab"><span>д1</span><span>д2</span><span>д3</span><span>д4</span><span>д5</span><span>д6</span><span>д7</span><span>д8</span><span>д9</span><span>д10</span></div>
+    <p>Зелёные столбцы — фаза набора, тёмные — поддержка перед отключением. Шаг объёма меняется раз в 4–5 дней, в зависимости от позиции.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Дни</th><th>Действие</th><th>Кластер</th><th>Раздачи в день</th><th>Контроль</th></tr></thead>
+    <tbody>
+      <tr><td>−7…0</td><td>Шаги подготовки 1–9: размерная сетка в наличии, фото протестированы, поставка на 2–3 склада</td><td>—</td><td>—</td><td>Остатки по ходовым размерам на 60+ дней, предельные CPM и CPC посчитаны</td></tr>
+      <tr><td>1–5</td><td>Маркетинговые раздачи по НЧ</td><td>«джинсы женские широкие с высокой посадкой черные»</td><td>1 → 2 → 2 → 3 → 3</td><td>Позиция по ключу раз в день, процент выкупа</td></tr>
+      <tr><td>4–8</td><td>Раздачи по СЧ, запуск ручной рекламы</td><td>«джинсы женские широкие черные»</td><td>1 → 2 → 3 (по месту в выдаче)</td><td>«джинсы женские», «джинсы y2k» в минус</td></tr>
+      <tr><td>5–14</td><td>Полёт: минусация, SEO, таблица оцифровки</td><td>НЧ + СЧ</td><td>по лесенке</td><td>Доля органики, показов на заказ, финальный ДРР</td></tr>
+      <tr><td>14+</td><td>Орбита: поддержка, снижение ставки, тест цены, реклама в полках</td><td>следующий кластер: «джинсы бананы женские»</td><td>1–2 около недели</td><td>CTR ↑, CPC ↓, ДРР ↓</td></tr>
+    </tbody>
+  </table></div>
+  <div class="card warn"><h3>Ограничения</h3><p>Маркетинговые раздачи в этой методологии — это заказы реальных покупателей, которые получают кэшбэк за покупку и честный отзыв. Условия раздач стоит сверять с актуальными правилами Wildberries. Для одежды учитывайте процент выкупа: примерка и возвраты растягивают оборот остатков. Сроки переиндексации и пороговые значения (350 ₽ полезности, CTR 1%) — практические ориентиры из разобранного урока, их нужно перепроверять по своей нише.</p></div>
+  <p class="foot" style="color:var(--onyx)">Методология систематизирована @yeromind по материалам урока «Ракетная технология продвижения товара 2.0» (курс «Супервеб»). Авторство исходной технологии принадлежит автору курса.</p>
+</div></section>
+
+<section class="band" data-theme="dark"><div class="wrap">
+  <div class="head"><span class="eyebrow">Дальше</span><h2>Посмотрите, как это работает <span class="acc">на цифрах</span></h2>
+  <p class="lede">На главной странице собраны кейсы брендов и артикулов, где я применял этот подход, и примеры ИИ-дашбордов для контроля продвижения.</p></div>
+  <div class="cta"><a class="btn p" href="../#cases">Смотреть кейсы</a><a class="btn g" href="https://t.me/yeromind" target="_blank" rel="noopener">Написать в Telegram</a></div>
+</div></section>
+
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('js');
+  var els=document.querySelectorAll('.band:not(.hero) .card, .band:not(.hero) .step, .node, .stage, .tbl');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el,i){
+    var r=el.getBoundingClientRect();
+    el.classList.add('rv');
+    if(r.top>innerHeight){el.classList.add('pre');el.style.transitionDelay=(i%4)*60+'ms';io.observe(el);}
+  });
+})();
+</script>
+</body></html>
