@@ -498,15 +498,53 @@ path.area,.ann{transition:opacity .8s 1.2s}
         <div class="rt-tags"><span>4 этапа</span><span>9 шагов подготовки</span><span>Дерево диагностики</span></div>
         <span class="btn primary" style="width:fit-content">Открыть методологию</span>
       </div>
-      <div class="rt-chart chart-anim" aria-hidden="true">
-        <svg viewBox="0 0 600 240">
-          <g stroke="#30322a" stroke-width="1"><line x1="20" y1="200" x2="580" y2="200"/><line x1="160" y1="20" x2="160" y2="200" stroke-dasharray="3 5"/><line x1="300" y1="20" x2="300" y2="200" stroke-dasharray="3 5"/><line x1="440" y1="20" x2="440" y2="200" stroke-dasharray="3 5"/></g>
-          <g fill="#7e8371" font-family="Geist, sans-serif" font-size="14"><text x="90" y="226" text-anchor="middle">Подготовка</text><text x="230" y="226" text-anchor="middle">Старт</text><text x="370" y="226" text-anchor="middle">Полёт</text><text x="510" y="226" text-anchor="middle">Орбита</text></g>
-          <path class="ln" pathLength="1" d="M20 196 C 120 196, 170 40, 220 42 S 330 150, 580 176" fill="none" stroke="#7e8371" stroke-width="2"/>
-          <path class="ln" pathLength="1" d="M20 197 C 150 196, 230 150, 320 118 S 500 98, 580 94" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-          <path class="ln" pathLength="1" d="M20 190 C 90 188, 130 60, 200 40 S 420 60, 580 60" fill="none" stroke="#68ef3f" stroke-width="3" stroke-linecap="round"/>
-          <g class="ann"><circle cx="580" cy="60" r="7" fill="#68ef3f"/><circle cx="580" cy="60" r="14" fill="#68ef3f" opacity=".2"/></g>
-          <g font-family="Geist, sans-serif" font-size="14" font-weight="500"><text x="566" y="44" text-anchor="end" fill="#68ef3f">позиция</text><text x="566" y="86" text-anchor="end" fill="#ffffff">выручка</text><text x="566" y="168" text-anchor="end" fill="#7e8371">ДРР</text></g>
+      <div class="rt-chart" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;padding:40px 20px;min-height:340px">
+        <style>
+          @keyframes rocketFly{from{transform:translateY(60px) rotate(-15deg);opacity:0}to{transform:translateY(-40px) rotate(0deg);opacity:1}}
+          @keyframes rocketGlow{0%,100%{filter:drop-shadow(0 0 12px rgba(104,239,63,0.4))}50%{filter:drop-shadow(0 0 24px rgba(104,239,63,0.8))}}
+          @keyframes sparkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
+          .rocket-svg{animation:rocketFly 2.4s cubic-bezier(0.34,1.56,0.64,1) both;width:100%;max-width:200px;height:auto}
+          .rocket-glow{animation:rocketGlow 2s ease-in-out 0.3s infinite}
+          .spark{animation:sparkle 1.2s ease-in-out infinite;transform-origin:center}
+        </style>
+        <svg class="rocket-svg rocket-glow" viewBox="0 0 120 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- Огонь в выхлопе -->
+          <g class="spark" style="animation-delay:0.2s"><path d="M50 240 L45 260 L50 250 L55 260 Z" fill="#ff7a59" opacity="0.8"/></g>
+          <g class="spark" style="animation-delay:0.4s"><path d="M60 240 L55 262 L60 250 L65 262 Z" fill="#ffb84d" opacity="0.7"/></g>
+          <g class="spark" style="animation-delay:0.6s"><path d="M70 240 L65 260 L70 250 L75 260 Z" fill="#ff7a59" opacity="0.8"/></g>
+
+          <!-- Основной корпус ракеты -->
+          <g fill="#68ef3f">
+            <!-- Головной обтекатель (конус) -->
+            <path d="M60 20 L50 50 L70 50 Z" fill="#68ef3f"/>
+
+            <!-- Основной цилиндр -->
+            <rect x="45" y="50" width="30" height="120" rx="4" fill="#68ef3f"/>
+
+            <!-- Иллюминаторы -->
+            <circle cx="60" cy="70" r="4" fill="#122314" opacity="0.6"/>
+            <circle cx="60" cy="95" r="4" fill="#122314" opacity="0.6"/>
+            <circle cx="60" cy="120" r="4" fill="#122314" opacity="0.6"/>
+
+            <!-- Стабилизаторы (плавники) слева -->
+            <path d="M45 140 L25 160 L40 150 Z" fill="#68ef3f"/>
+
+            <!-- Стабилизаторы (плавники) справа -->
+            <path d="M75 140 L95 160 L80 150 Z" fill="#68ef3f"/>
+
+            <!-- Выхлопное сопло -->
+            <ellipse cx="60" cy="180" rx="8" ry="5" fill="#f2f5eb"/>
+            <path d="M52 185 L48 240 L72 240 L68 185 Z" fill="#68ef3f"/>
+          </g>
+
+          <!-- Выхлоп (блеск) -->
+          <g opacity="0.3">
+            <path d="M50 180 L45 220 L50 190 Z" fill="#68ef3f"/>
+            <path d="M70 180 L75 220 L70 190 Z" fill="#68ef3f"/>
+          </g>
+
+          <!-- Свечение вокруг ракеты -->
+          <circle cx="60" cy="100" r="50" fill="none" stroke="#68ef3f" stroke-width="1" opacity="0.2"/>
         </svg>
       </div>
     </a>
